@@ -1,0 +1,14 @@
+{
+  "name": "oluwapeyibomi-backend",
+  "version": "1.0.0",
+  "description": "Backend for the Oluwapeyibomi site — form submissions, an admin panel for the archive, and a live Instagram feed. Zero external dependencies (uses Node's built-in node:sqlite), so no npm install is required.",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "hash-password": "node lib/hash-password.js"
+  },
+  "license": "UNLICENSED"
+}

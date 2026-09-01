@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Oluwapeyibomi</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div id="loginScreen" class="login-screen">
+  <form id="loginForm" class="login-box">
+    <div class="mono">ADMIN</div>
+    <h1>Oluwapeyibomi</h1>
+    <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required>
+    <button type="submit">Sign in</button>
+    <p id="loginError" class="error-text"></p>
+  </form>
+</div>
+
+<div id="app" class="app hidden">
+  <header class="app-header">
+    <div class="app-brand">Oluwapeyibomi <span class="mono">/ admin</span></div>
+    <nav class="app-nav">
+      <button class="tab active" data-tab="inbox">Inbox</button>
+      <button class="tab" data-tab="archive">Archive</button>
+      <button class="tab" data-tab="instagram">Instagram</button>
+    </nav>
+    <button id="logoutBtn" class="ghost-btn">Log out</button>
+  </header>
+
+  <main class="app-main">
+
+    <!-- INBOX -->
+    <section id="tab-inbox" class="panel">
+      <div class="panel-head">
+        <h2>Form submissions</h2>
+        <div class="filter-row">
+          <button class="chip active" data-type="all">All</button>
+          <button class="chip" data-type="waitlist">Waitlist</button>
+          <button class="chip" data-type="connect">Connect</button>
+          <button class="chip" data-type="ask">Ask a question</button>
+        </div>
+      </div>
+      <div id="submissionsList" class="list"></div>
+    </section>
+
+    <!-- ARCHIVE -->
+    <section id="tab-archive" class="panel hidden">
+      <div class="panel-head">
+        <h2>Archive</h2>
+        <button id="addPhotoBtn" class="primary-btn">+ Add photo</button>
+      </div>
+      <p class="hint">Toggle "Featured" to control what appears in the small curated grid visitors see on the Archive page. Everything else stays in the full archive.</p>
+      <div id="archiveList" class="archive-grid"></div>
+    </section>
+
+    <!-- INSTAGRAM -->
+    <section id="tab-instagram" class="panel hidden">
+      <div class="panel-head"><h2>Instagram live feed</h2></div>
+      <div id="igStatus" class="ig-status"></div>
+      <form id="igForm" class="ig-form">
+        <label>Instagram User ID<input type="text" id="igUserId" placeholder="1789..."></label>
+        <label>Access token<input type="text" id="igToken" placeholder="IGQ..."></label>
+        <button type="submit">Save &amp; connect</button>
+        <button type="button" id="igRefreshBtn" class="ghost-btn">Refresh now</button>
+      </form>
+      <p class="hint">See the README's "Instagram setup" section for exactly where to get these two values from Meta's developer dashboard.</p>
+      <div id="igPreview" class="ig-preview"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Add / edit photo modal -->
+<div id="photoModal" class="modal hidden">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <h3 id="modalTitle">Add a photo</h3>
+    <form id="photoForm">
+      <label>Photo file<input type="file" id="photoFile" accept="image/*"></label>
+      <div id="photoPreview" class="photo-preview"></div>
+      <label>Category (slug, e.g. "softlife")<input type="text" id="photoCategory" required></label>
+      <label>Category label (e.g. "Soft Life Diaries")<input type="text" id="photoCategoryLabel" required></label>
+      <label>Caption<textarea id="photoCaption"></textarea></label>
+      <label class="checkbox-row"><input type="checkbox" id="photoCurated"> Featured in curated grid</label>
+      <label id="curatedSizeRow" class="hidden">Tile size
+        <select id="photoCuratedSize">
+          <option value="">Normal</option>
+          <option value="wide">Wide</option>
+          <option value="tall">Tall</option>
+          <option value="feature">Feature (large)</option>
+        </select>
+      </label>
+      <div class="modal-actions">
+        <button type="submit" class="primary-btn">Save</button>
+        <button type="button" id="deletePhotoBtn" class="danger-btn hidden">Delete</button>
+      </div>
+      <p id="photoFormError" class="error-text"></p>
+    </form>
+  </div>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
